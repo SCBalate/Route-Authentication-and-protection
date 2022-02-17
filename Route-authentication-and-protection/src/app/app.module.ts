@@ -15,7 +15,6 @@ import { AuthComponent } from './auth/auth.component';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-  
     HttpClientModule,
     
   ],
