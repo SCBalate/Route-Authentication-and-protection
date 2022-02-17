@@ -1,18 +1,23 @@
-<div class="container">
-    <h1>SavvyDev</h1>
-    <p>Signin into our Project<p>
+<div class="container mt-5 pt-5">
+    <h1 class="text-center text-info">SavvyDev</h1>
+    <p class="text-center">{{loginMode?'Sign In' : 'Sign Up'}}
+        into our Project<p>
     <div class="row">
         <div class="col-md-6">
            
-            <form>
-                <div class="row">
+            <form [formGroup]="Form" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                <div class="row mt-3">
                     <div class="col-md-12">
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text" id="basic-addon1">@</span>
                     </div>
-                    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1">
-                  </div>
+                    <input type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="basic-addon1" id="email" formControlName="email">
+                    <div *ngIf="Form.controls['email'].invalid && (Form.controls['email'].dirty || Form.controls['email'].touched)" class="alert w-100">Email is required
+                        <div *ngIf="Form.controls['email'].errors?.['required']">
+                      </div>
+                </div>
                 </div>
 
                 <div class="col-md-12">
@@ -20,29 +25,43 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text" id="basic-addon1"><i class="fa fa-lock"></i></span>
                         </div>
-                        <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+                        
+                        <input type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1"id="password" formControlName="password">
+                        <div *ngIf="Form.controls['password'].invalid && (Form.controls['password'].dirty || Form.controls['password'].touched)" class="alert">Password is required
+                            <div *ngIf="Form.controls['password'].errors?.['required']" class="w-100">
+                           
+                          </div> 
                       </div>
                     </div>
 
                     <div class="col-md-12">
-                        <div class="form-group">
-                            <button class="btn btn-lg border-primary">Signin</button>
-                        </div>
+                        
+                            <button class="btn btn-block border-primary" type="submit">{{loginMode?'Sign In' :'Create Account'}}</button>
+                        
                     </div>
-                    <p>Don't have account? <a href="#" >Create one</a></p>
-                    <a href="#">Forgot Password?</a>
+                    
+                    <div class="col-md-12">
+                    <p class="mb-0">{{loginMode? 'Don`t have account' : 'Already have account?'}}
+                         <a href="#" (click)="onSwitchMode()">{{loginMode?'Create one' :'Sign In'}}</a></p><br>
+                  </div>
+                  <div class="col-md-12"> 
+                      <a href="#">Forgot Password?</a>
+                    </div> 
                 </div>
+                </div></div></div>
                 </form>
 </div>
 <div class="col-md-6">
     <h3 class="text-center">Go with Social!</h3>
     <p class="text-center text-muted">Get started with ypur Social Acccounts</p>
     <div class="row">
-        <div class="col-md-12">
-            <a href="#" class="btn btn-lg btn-block btn-social btn-google"><i class="fa fa-google"></i> Google</a>
-        </div>
-        <div class="col-md-12">
-            <a href="#" class="btn btn-lg btn-block btn-social btn-facebook"><i class="fa fa-facebook"></i> Facebook</a>
-        </div>
+        <div class="col-md-12 ">
+            
+            <a href="#" class="btn btn-lg btn-block btn-social btn-google border-primary">Sign in with &nbsp;<i class="fa-brands fa-google"></i></a>
+         </div>
+        <div class="col-md-12 mt-3">
+            
+            <a href="#" class="btn btn-lg btn-block btn-social btn-facebook border-primary">Sign in with &nbsp;<i class="fa-brands fa-facebook"></i></a>
+         </div>
        </div></div></div>
 </div>
